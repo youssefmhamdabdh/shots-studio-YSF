@@ -42,6 +42,9 @@ jobs:
         run: flutter pub get
         working-directory: shots_studio
 
+      - name: Force JVM Target
+        run: echo "kotlin.jvm.target=17" >> shots_studio/android/gradle.properties
+
       - name: Build APK (github)
         run: >
           flutter build apk
