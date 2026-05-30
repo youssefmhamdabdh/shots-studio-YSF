@@ -15,18 +15,11 @@ on:
 
 jobs:
   build:
-    name: Build (${{ matrix.flavor }})
+    name: Build (github)
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-    strategy:
-      matrix:
-        include:
-          - flavor: github
-            dart_define: BUILD_SOURCE=github
-          - flavor: fdroid
-            dart_define: BUILD_SOURCE=fdroid
-          - flavor: playstore
-            dart_define: BUILD_SOURCE=playstore
 
     steps:
       - name: Checkout code
@@ -49,15 +42,15 @@ jobs:
         run: flutter pub get
         working-directory: shots_studio
 
-      - name: Build APK (${{ matrix.flavor }})
+      - name: Build APK (github)
         run: >
           flutter build apk
-          --flavor ${{ matrix.flavor }}
-          --dart-define=${{ matrix.dart_define }}
+          --flavor github
+          --dart-define=BUILD_SOURCE=github
         working-directory: shots_studio
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: apk-${{ matrix.flavor }}
-          path: shots_studio/build/app/outputs/flutter-apk/app-${{ matrix.flavor }}-release.apk
+          name: apk-github
+          path: shots_studio/build/app/outputs/flutter-apk/app-github-release.apk
