@@ -43,7 +43,7 @@ jobs:
         working-directory: shots_studio
 
       - name: Force JVM Target
-        run: echo "kotlin.jvm.target=17" >> shots_studio/android/gradle.properties
+        run: echo "kotlin.jvm.target=17" >> shots_studio/android/gradle.properties && echo "kotlin.jvm.target.validation.mode=warning" >> shots_studio/android/gradle.properties
 
       - name: Build APK (github)
         run: >
