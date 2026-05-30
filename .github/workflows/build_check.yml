@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: "temurin"
-          java-version: "17"
+          java-version: "11"
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -43,7 +43,7 @@ jobs:
         working-directory: shots_studio
 
       - name: Force JVM Target
-        run: echo "kotlin.jvm.target=17" >> shots_studio/android/gradle.properties && echo "kotlin.jvm.target.validation.mode=warning" >> shots_studio/android/gradle.properties
+        run: echo "kotlin.jvm.target=11" >> shots_studio/android/gradle.properties && echo "kotlin.jvm.target.validation.mode=warning" >> shots_studio/android/gradle.properties
 
       - name: Build APK (github)
         run: >
